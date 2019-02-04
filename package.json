@@ -1,0 +1,22 @@
+{
+  "name": "tdd-template-jest",
+  "version": "1.0.0",
+  "description": "TDD template with jest",
+  "main": "index.js",
+  "author": "CodeMangler",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/preset-env": "^7.3.1",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^24.0.0",
+    "dotenv": "^6.2.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "jest": "^24.0.0",
+    "nyc": "^13.1.0",
+    "prettier": "^1.16.3"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
