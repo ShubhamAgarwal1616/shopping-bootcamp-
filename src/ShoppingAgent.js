@@ -8,15 +8,22 @@ export class ShoppingAgent {
   buyItems(budget) {
     let itemsPurchased = [];
     this.listOfItems = this.listOfItems.sort((item, otherItem) => {
-      return item.price - otherItem.price;
+      return this.netPrice(item) - this.netPrice(otherItem);
     });
-
     this.listOfItems.forEach(eachItem => {
-      if (budget >= eachItem.price) {
+      let price = this.netPrice(eachItem);
+      if (budget >= price) {
         itemsPurchased.push(eachItem);
-        budget -= eachItem.price;
+        budget -= price;
       }
     });
     return itemsPurchased;
+  }
+
+  netPrice(item) {
+    if (isNaN(item.price)){
+      throw new Error("Price is required");
+    }
+    return item.price + (item.tax * item.price) / 100;
   }
 }
