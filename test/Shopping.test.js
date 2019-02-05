@@ -1,28 +1,31 @@
 import { ShoppingAgent } from "../src/ShoppingAgent";
+import { Item } from "../src/item";
 
 describe("buyItems", () => {
   it("expects items which are bought with the budget", () => {
     let listOfItems = [
-      { name: "book1", price: "af", tax: 2 },
-      { name: "book2", price: 10, tax: 2 },
-      { name: "book3", price: 20, tax: 2 }
+      new Item("book1", "5", 2),
+      new Item("book2", 10, 2),
+      new Item("book3", 20, 2),
     ];
-    let itemsPurchased = [{ name: "book1", price: 5, tax: 2 }];
+    let itemsPurchased = [new Item("book1", 5, 2)];
     let budget = 6.0;
     let shopping = new ShoppingAgent(listOfItems);
-    expect(() => shopping.buyItems(budget)).toThrow(new Error("Price is required"));
+    expect(() => {shopping.buyItems(budget)}).toThrow(new Error("Invalid Input"));
   });
 
   it("expects items which are bought with the budget", () => {
-    let listOfItems = [
-      { name: "book1", price: 10, tax: 3 },
-      { name: "book2", price: 15, tax: 3 },
-      { name: "book3", price: 5, tax: 3 }
-    ];
-    let itemsPurchased = [
-      { name: "book3", price: 5, tax: 3 },
-      { name: "book1", price: 10, tax: 3 }
-    ];
+    // let listOfItems = [
+    //   new Item("book1", 10, 3),
+    //   new Item("book2", 15, 3),
+    //   new Item("book3", 5, 3)
+    // ];
+    let listOfItems = ["book1", "book2", "book3"]
+    // let itemsPurchased = [
+    //   new Item("book3", 5, 3),
+    //   new Item("book1", 10, 3)
+    // ];
+    let itemPurchased = ["book3", "book1"]
     let budget = 25.0;
     let shopping = new ShoppingAgent(listOfItems);
     expect(shopping.buyItems(budget)).toEqual(itemsPurchased);
@@ -38,9 +41,9 @@ describe("buyItems", () => {
 
   it("expects to buy no items when the budget is zero", () => {
     let listOfItems = [
-      { name: "book1", price: 10, tax: 4 },
-      { name: "book2", price: 30, tax: 4 },
-      { name: "book3", price: 15, tax: 4 }
+      new Item("book1", 10, 4),
+      new Item("book2", 30, 4),
+      new Item("book3", 15, 4)
     ];
     let itemsPurchased = [];
     let budget = 0;
